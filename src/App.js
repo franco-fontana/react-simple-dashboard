@@ -1,7 +1,11 @@
 // import { data } from "autoprefixer";
 import React from "react";
 // import "./App.css";
-import Table, { SelectColumnFilter } from "./components/Layout/Table";
+import Table, {
+  AvatarCell,
+  SelectColumnFilter,
+  StatusPill,
+} from "./components/Layout/Table";
 
 const getData = () => {
   const data = [
@@ -21,7 +25,7 @@ const getData = () => {
       email: "cody.fisher@example.com",
       title: "Product Directives Officer",
       department: "Intranet",
-      status: "Active",
+      status: "Inactive",
       role: "Owner",
       imgUrl:
         "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
@@ -43,7 +47,7 @@ const getData = () => {
       email: "jenny.wilson@example.com",
       title: "Central Security Manager",
       department: "Program",
-      status: "Active",
+      status: "Offline",
       role: "Member",
       imgUrl:
         "https://images.unsplash.com/photo-1498551172505-8ee7ad69f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
@@ -54,7 +58,7 @@ const getData = () => {
       email: "kristin.watson@example.com",
       title: "Lean Implementation Liaison",
       department: "Mobility",
-      status: "Active",
+      status: "Inactive",
       role: "Admin",
       imgUrl:
         "https://images.unsplash.com/photo-1532417344469-368f9ae6d187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
@@ -73,7 +77,7 @@ const getData = () => {
     },
   ];
 
-  return [...data, ...data, ...data];
+  return [...data, ...data, ...data, ...data, ...data, ...data];
 };
 
 function App() {
@@ -84,6 +88,9 @@ function App() {
         accessor: "name",
         Filter: SelectColumnFilter,
         filter: "includes",
+        Cell: AvatarCell,
+        imgAccessor: "imgUrl",
+        emailAccessor: "email",
       },
       {
         Header: "Title",
@@ -92,6 +99,7 @@ function App() {
       {
         Header: "Status",
         accessor: "status",
+        Cell: StatusPill,
       },
       {
         Header: "Role",
